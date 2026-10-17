@@ -33,7 +33,7 @@ export default function TermsPage() {
 
           <section>
             <h2 className="text-lg font-bold text-navy mb-2">5. Contact</h2>
-            <p>For any questions regarding these terms, please contact us at <a href="mailto:hello@manuellafoods.co.uk" className="text-cyan hover:underline">hello@manuellafoods.co.uk</a>.</p>
+            <p>For any questions regarding these terms, please contact us at <a href="mailto:info@manuellafoods.co.uk" className="text-cyan hover:underline">info@manuellafoods.co.uk</a>.</p>
           </section>
 
           <section>

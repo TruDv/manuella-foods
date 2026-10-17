@@ -52,7 +52,7 @@ export default function PrivacyPage() {
               <li>Ask us to delete your data</li>
               <li>Withdraw your consent at any time</li>
             </ul>
-            <p className="mt-2">To exercise any of these rights, please email us at <a href="mailto:hello@manuellafoods.co.uk" className="text-cyan hover:underline">hello@manuellafoods.co.uk</a>.</p>
+            <p className="mt-2">To exercise any of these rights, please email us at <a href="mailto:info@manuellafoods.co.uk" className="text-cyan hover:underline">info@manuellafoods.co.uk</a>.</p>
           </section>
 
           <section>

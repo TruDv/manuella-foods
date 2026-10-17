@@ -15,12 +15,10 @@ export function getRegistrationEmailHtml(name: string, businessName: string) {
             <td align="center">
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(62, 64, 149, 0.05);">
                 
-                <!-- Header -->
+                <!-- Header with Cream Background and Real Logo -->
                 <tr>
-                  <td align="center" style="background-color: #3e4095; padding: 30px 20px;">
-                    <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">
-                      Manuella<span style="color: #1fb6e8;">.</span>
-                    </h1>
+                  <td align="center" style="background-color: #fafaf7; padding: 24px 20px; border-bottom: 1px solid #eff2ea;">
+                    <img src="https://manuellafoods.co.uk/images/logo.png" alt="Manuella Foods" width="140" style="display: block; max-width: 140px; height: auto; border: 0;" />
                   </td>
                 </tr>
 
@@ -65,9 +63,10 @@ export function getRegistrationEmailHtml(name: string, businessName: string) {
                 <tr>
                   <td align="center" style="background-color: #fafaf7; padding: 20px; border-top: 1px solid #eff2ea;">
                     <p style="color: #94a3b8; font-size: 12px; margin: 0; line-height: 1.5;">
-                      Manuella Foods<br>
-                      Watford-based · Delivering across N & W London and the M1/M25 corridor.<br>
-                      © ${new Date().getFullYear()} Manuella Foods. All rights reserved.
+                      <strong>Manuella Foods Ltd</strong><br>
+                      Registered in England &amp; Wales · Company No. 14725282<br>
+                      Watford-based · Delivering across N &amp; W London and the M1/M25 corridor.<br><br>
+                      © 2026 Manuella Foods Ltd. All rights reserved.
                     </p>
                   </td>
                 </tr>

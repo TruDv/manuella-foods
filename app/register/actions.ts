@@ -47,7 +47,7 @@ export async function submitRegistration(data: any) {
     // A. Confirmation email to the customer
     if (data.email) {
       await resend.emails.send({
-        from: "Manuella Foods <hello@manuellafoods.co.uk>", // <-- Your verified email
+        from: "Manuella Foods <info@manuellafoods.co.uk>", // <-- Your verified email
         to: data.email,
         cc: ["kingsleybere@gmail.com"], // This copies them in
         subject: "You're on the Manuella Foods trade list",

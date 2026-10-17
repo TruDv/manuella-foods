@@ -186,7 +186,7 @@ export default function AdminPage() {
       <header className="bg-white border-b border-navy/10 sticky top-0 z-10">
         <div className="max-w-[1320px] mx-auto px-6 h-16 flex items-center justify-between">
           <h1 className="font-display font-bold text-lg text-navy">
-            Manuella Admin
+            Admin
           </h1>
           <button
             onClick={handleLogout}

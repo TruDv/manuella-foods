@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export function Footer() {
@@ -14,10 +15,17 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <p className="font-display text-2xl font-bold tracking-[-0.03em] text-white">
-              Manuella<span className="text-cyan">.</span>
-            </p>
-            <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-white/60">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/images/logowhite.png"
+                alt="Manuella"
+                width={280} // Increased intrinsic width
+                height={80}  // Increased intrinsic height
+                priority
+                className="h-14 w-auto sm:h-16" // Increased rendered size
+              />
+            </Link>
+            <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-white/60">
               African and Caribbean wholesale staples, ordered online and
               delivered direct to your kitchen door.
             </p>
@@ -41,10 +49,10 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
                 <a
-                  href="mailto:hello@manuellafoods.co.uk"
+                  href="mailto:info@manuellafoods.co.uk"
                   className="transition-colors hover:text-white"
                 >
-                  hello@manuellafoods.co.uk
+                  info@manuellafoods.co.uk
                 </a>
               </li>
               <li className="flex items-start gap-3">
