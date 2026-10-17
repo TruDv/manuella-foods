@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { ConsentManager } from "@/components/ConsentManager";
 
@@ -48,10 +47,10 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-cream antialiased">
         {children}
+        
+        {/* ConsentManager handles both the banner, the modal, AND the Google Analytics script injection */}
         <ConsentManager />
       </body>
-      {/* Google Analytics - Automatically respects the ConsentManager */}
-      <GoogleAnalytics gaId="G-LD5XBPQ9QJ" />
     </html>
   );
 }
