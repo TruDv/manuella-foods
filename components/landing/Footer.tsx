@@ -83,7 +83,7 @@ export function Footer() {
             
             {/* Company Info */}
             <div className="space-y-1">
-              <p>© {new Date().getFullYear()} Manuella Foods Ltd. All rights reserved.</p>
+              <p>© 2026 Manuella Foods Ltd. All rights reserved.</p>
               <p className="text-white/40">
                 Registered in England &amp; Wales · Company No. 14725282
               </p>

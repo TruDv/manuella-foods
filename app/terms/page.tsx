@@ -8,7 +8,7 @@ export default function TermsPage() {
           ← Back to home
         </Link>
         <h1 className="font-display text-3xl font-bold tracking-tight text-navy mb-6">Terms of Service</h1>
-        <p className="text-sm text-navy/50 mb-8">Last updated: {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}</p>
+        <p className="text-sm text-navy/50 mb-8">Last updated: October 2026</p>
 
         <div className="space-y-6 text-[15px] leading-relaxed text-navy/70">
           <section>
@@ -34,6 +34,15 @@ export default function TermsPage() {
           <section>
             <h2 className="text-lg font-bold text-navy mb-2">5. Contact</h2>
             <p>For any questions regarding these terms, please contact us at <a href="mailto:hello@manuellafoods.co.uk" className="text-cyan hover:underline">hello@manuellafoods.co.uk</a>.</p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-bold text-navy mb-2">6. Company Information</h2>
+            <p>
+              Manuella Foods Ltd is a company registered in England and Wales.<br />
+              <strong>Company Number:</strong> 14725282<br />
+              <strong>Registered Office:</strong> 72 Deacons Hill Road, Elstree, Hertfordshire, United Kingdom, WD6 3JJ
+            </p>
           </section>
         </div>
       </div>

@@ -8,7 +8,7 @@ export default function PrivacyPage() {
           ← Back to home
         </Link>
         <h1 className="font-display text-3xl font-bold tracking-tight text-navy mb-6">Privacy Policy</h1>
-        <p className="text-sm text-navy/50 mb-8">Last updated: {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}</p>
+        <p className="text-sm text-navy/50 mb-8">Last updated: October 2026</p>
 
         <div className="space-y-6 text-[15px] leading-relaxed text-navy/70">
           <section>
