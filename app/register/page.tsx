@@ -14,16 +14,17 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-cream">
       {/* Sticky header with glassmorphism effect */}
       <header className="sticky top-0 z-50 border-b border-navy/5 bg-cream/90 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 sm:px-8">
+        {/* Increased height to h-[4.5rem] on mobile and h-20 on desktop */}
+        <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-8">
           
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo.png"
               alt="Manuella"
-              width={180}
-              height={48}
+              width={220} // Increased intrinsic width
+              height={64} // Increased intrinsic height
               priority
-              className="h-9 w-auto sm:h-10"
+              className="h-11 w-auto sm:h-12" // Increased rendered size
             />
           </Link>
 

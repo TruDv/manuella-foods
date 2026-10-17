@@ -45,7 +45,8 @@ export function Nav() {
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div
             className={cn(
-              "flex h-16 items-center justify-between rounded-full px-3 pl-5 transition-all duration-500 sm:h-[4.5rem]",
+              // Increased the height slightly from h-16/h-[4.5rem] to h-[4.5rem]/h-20 to fit the bigger logo
+              "flex h-[4.5rem] items-center justify-between rounded-full px-3 pl-5 transition-all duration-500 sm:h-20",
               scrolled
                 ? "border border-navy/10 bg-white/70 shadow-sm backdrop-blur-xl"
                 : "border border-transparent bg-transparent"
@@ -56,10 +57,10 @@ export function Nav() {
               <Image
                 src="/images/logo.png"
                 alt="Manuella"
-                width={180}
-                height={48}
+                width={220} // Increased intrinsic width
+                height={64} // Increased intrinsic height
                 priority
-                className="h-9 w-auto sm:h-10"
+                className="h-11 w-auto sm:h-12" // Increased rendered size
               />
             </Link>
 
@@ -122,9 +123,9 @@ export function Nav() {
               <Image
                 src="/images/manuella-logo-white.png"
                 alt="Manuella"
-                width={180}
-                height={48}
-                className="h-9 w-auto sm:h-10"
+                width={220} // Increased intrinsic width
+                height={64} // Increased intrinsic height
+                className="h-11 w-auto sm:h-12" // Increased rendered size
               />
 
               <button

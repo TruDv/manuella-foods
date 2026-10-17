@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://manuellafoods.co.uk"
   ),
   title: {
-    default: "Manuella Foods — African & Caribbean Wholesale, Delivered",
+    default: "Manuella Foods - African & Caribbean Wholesale, Delivered",
     template: "%s | Manuella Foods",
   },
   description:
