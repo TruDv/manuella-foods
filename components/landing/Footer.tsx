@@ -1,12 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export function Footer() {
-  // Function to trigger the CookieYes preferences modal
-  const openCookiePreferences = () => {
-    window.dispatchEvent(new CustomEvent("cookieyes_preferences"));
-  };
-
   return (
     <footer
       id="contact"
@@ -106,14 +103,14 @@ export function Footer() {
                 Terms of Service
               </Link>
               
-              {/* Cookie Settings Button - Using Custom Event */}
-<button 
-  type="button" 
-  onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))} 
-  className="hover:text-white transition-colors"
->
-  Cookie Settings
-</button>
+              {/* Cookie Settings Button */}
+              <button 
+                type="button" 
+                onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))} 
+                className="hover:text-white transition-colors"
+              >
+                Cookie Settings
+              </button>
             </div>
             
           </div>

@@ -1,4 +1,3 @@
-"use client";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -44,7 +43,7 @@ export default function LaunchPage() {
   return (
     <div className="relative">
       {/* Fixed nav */}
-      <div className="fixed left-0 right-0 top-0 z-50">
+      <div className="fixed left-0 right-0 top-0 z-50 bg-cream">
         <Nav />
       </div>
 
@@ -58,7 +57,7 @@ export default function LaunchPage() {
               Launching December 2026
             </p>
 
-            <h1 className="font-display text-[1.75rem] font-extrabold leading-[1.2] tracking-[-0.03em] text-navy sm:text-[2.25rem]">
+            <h1 className="font-display text-[1.75rem] font-bold leading-[1.2] tracking-[-0.03em] text-navy sm:text-[2.25rem]">
               Manuella Foods is a Watford-based African, Caribbean and
               International wholesaler.
             </h1>
@@ -90,7 +89,7 @@ export default function LaunchPage() {
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-cyan">
               What we're bringing
             </p>
-            <h2 className="font-display text-[1.5rem] font-extrabold leading-[1.2] tracking-[-0.03em] text-navy sm:text-[1.85rem]">
+            <h2 className="font-display text-[1.5rem] font-bold leading-[1.2] tracking-[-0.03em] text-navy sm:text-[1.85rem]">
               Four categories, ready for your kitchen.
             </h2>
 
