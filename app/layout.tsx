@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+import { ConsentManager } from "@/components/ConsentManager";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -44,7 +46,12 @@ export default function RootLayout({
       lang="en-GB"
       className={`${geist.variable} ${instrumentSerif.variable} ${bricolage.variable}`}
     >
-      <body className="min-h-screen bg-cream antialiased">{children}</body>
+      <body className="min-h-screen bg-cream antialiased">
+        {children}
+        <ConsentManager />
+      </body>
+      {/* Google Analytics - Automatically respects the ConsentManager */}
+      <GoogleAnalytics gaId="G-LD5XBPQ9QJ" />
     </html>
   );
 }
