@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/* ============================================
+   Manuella Foods - Brand Tokens
+   ============================================ */
+
+@theme {
+  /* Core brand colors */
+  --color-navy: #3e4095;
+  --color-navy-dark: #2e3075;
+  --color-navy-light: #5558ad;
+
+  --color-cyan: #1fb6e8;
+  --color-cyan-dark: #1591ba;
+  --color-cyan-light: #5fcbee;
+
+  --color-ice: #d6f0fb;
+  --color-ice-soft: #eaf7fd;
+  --color-ice-deep: #b8e4f5;
+
+  --color-accent-red: #e63946;
+
+  --color-cream: #fafaf7;
+  --color-cream-2: #f4f2ec;
+
+  --color-sage: #eff2ea;
+  --color-sage-deep: #e3e8d9;
+
+  --color-ink: #0a1628;
+  --color-slate-soft: #64748b;
+
+  --color-background: #fafaf7;
+  --color-foreground: var(--color-navy);
+
+  /* Fonts */
+  --font-sans: var(--font-geist);
+  --font-display: var(--font-geist);       /* default display */
+  --font-serif: var(--font-instrument);    /* Option A */
+  --font-bricolage: var(--font-bricolage); /* Option B */
+}
+
+/* ============================================
+   Base
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv01", "cv11";
+}
+
+::selection {
+  background-color: var(--color-cyan);
+  color: white;
+}
+
+/* ============================================
+   Utility classes
+   ============================================ */
+
+.font-serif-italic {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Global grain texture - subtle */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Dotted background pattern */
+.bg-dots {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--color-navy) 12%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* Soft drop shadow for floating product images (PNGs with transparency) */
+.product-shadow {
+  filter: drop-shadow(0 30px 40px rgba(11, 43, 92, 0.12))
+    drop-shadow(0 12px 20px rgba(11, 43, 92, 0.08));
+}
+
+/* Fade-up animation fallback */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
