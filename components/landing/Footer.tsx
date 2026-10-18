@@ -4,41 +4,59 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
+const explore = [
+  { href: "/#how", label: "How it works" },
+  { href: "/launch", label: "Launch plan" },
+  { href: "/#faq", label: "FAQ" },
+];
+
 export function Footer() {
   return (
-    <footer
-      id="contact"
-      className="border-t border-navy/10 bg-navy text-white"
-    >
-      <div className="mx-auto max-w-[1320px] px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
-        {/* Top - brand + contact */}
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <footer id="contact" className="bg-navy text-white">
+      <div className="mx-auto max-w-[1200px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
+        {/* Top: brand, links, contact, CTA */}
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           {/* Brand */}
-          <div className="lg:col-span-4">
+          <div className="sm:col-span-2 lg:col-span-4">
             <Link href="/" className="inline-block">
               <Image
                 src="/images/logowhite.png"
                 alt="Manuella"
-                width={280} // Increased intrinsic width
-                height={80}  // Increased intrinsic height
+                width={280}
+                height={80}
                 priority
-                className="h-14 w-auto sm:h-16" // Increased rendered size
+                className="h-14 w-auto sm:h-16"
               />
             </Link>
-            <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-white/60">
+            <p className="mt-5 max-w-xs text-base leading-7 text-white/70">
               African and Caribbean wholesale staples, ordered online and
               delivered direct to your kitchen door.
             </p>
           </div>
 
+          {/* Explore */}
+          <div className="lg:col-span-2">
+            <h3 className="text-sm font-semibold text-white">Explore</h3>
+            <ul className="mt-5 space-y-3 text-base text-white/70">
+              {explore.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="transition-colors hover:text-white focus-visible:outline-none focus-visible:text-white focus-visible:underline"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact */}
-          <div className="lg:col-span-4">
-            <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-cyan">
-              Contact
-            </h3>
-            <ul className="mt-5 space-y-4 text-[15px] text-white/80">
+          <div className="lg:col-span-3">
+            <h3 className="text-sm font-semibold text-white">Contact</h3>
+            <ul className="mt-5 space-y-4 text-base text-white/70">
               <li className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
+                <Phone className="mt-1 h-4 w-4 shrink-0 text-cyan" />
                 <a
                   href="tel:01923602706"
                   className="transition-colors hover:text-white"
@@ -47,22 +65,22 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
+                <Mail className="mt-1 h-4 w-4 shrink-0 text-cyan" />
                 <a
                   href="mailto:info@manuellafoods.co.uk"
-                  className="transition-colors hover:text-white"
+                  className="break-all transition-colors hover:text-white"
                 >
                   info@manuellafoods.co.uk
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
-                <span>Monday – Friday, 9am – 5pm</span>
+                <Clock className="mt-1 h-4 w-4 shrink-0 text-cyan" />
+                <span>Monday to Friday, 9am to 5pm</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
+                <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan" />
                 <span>
-                  Watford - delivering N &amp; W London and along the M1/M25
+                  Watford, delivering N &amp; W London and along the M1/M25
                   corridor
                 </span>
               </li>
@@ -70,57 +88,60 @@ export function Footer() {
           </div>
 
           {/* CTA */}
-          <div className="lg:col-span-4">
-            <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-cyan">
-              Get started
-            </h3>
-            <p className="mt-5 text-[15px] leading-relaxed text-white/70">
+          <div className="sm:col-span-2 lg:col-span-3">
+            <h3 className="text-sm font-semibold text-white">Get started</h3>
+            <p className="mt-5 text-base leading-7 text-white/70">
               Register your interest to receive the starter range and early
               pricing when we launch in December 2026.
             </p>
             <Link
               href="/register"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-cyan px-5 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-cyan-light"
+              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-cyan px-6 text-base font-semibold text-navy transition-all hover:-translate-y-0.5 hover:bg-cyan-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
             >
               Register your interest
             </Link>
           </div>
         </div>
 
-        {/* Bottom - small print */}
-        <div className="mt-16 border-t border-white/10 pt-8">
-          <div className="flex flex-col gap-6 text-[13px] text-white/50 lg:flex-row lg:items-end lg:justify-between">
-            
-            {/* Company Info */}
+        {/* Bottom: small print */}
+        <div className="mt-14 border-t border-white/10 pt-8 sm:mt-16">
+          <div className="flex flex-col gap-6 text-sm text-white/60 lg:flex-row lg:items-end lg:justify-between">
+            {/* Company info */}
             <div className="space-y-1">
               <p>© 2026 Manuella Foods Ltd. All rights reserved.</p>
-              <p className="text-white/40">
+              <p className="text-white/50">
                 Registered in England &amp; Wales · Company No. 14725282
               </p>
-              <p className="text-white/40">
-                Registered Office: 72 Deacons Hill Road, Elstree, Hertfordshire, WD6 3JJ
+              <p className="text-white/50">
+                Registered Office: 72 Deacons Hill Road, Elstree,
+                Hertfordshire, WD6 3JJ
               </p>
             </div>
 
-            {/* Legal Links */}
-            <div className="flex flex-wrap gap-x-6 gap-y-3 font-medium text-white/60">
-              <Link href="/privacy" className="hover:text-white transition-colors">
+            {/* Legal links */}
+            <div className="flex flex-wrap gap-x-6 gap-y-3 font-medium">
+              <Link
+                href="/privacy"
+                className="transition-colors hover:text-white"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-white transition-colors">
+              <Link
+                href="/terms"
+                className="transition-colors hover:text-white"
+              >
                 Terms of Service
               </Link>
-              
-              {/* Cookie Settings Button */}
-              <button 
-                type="button" 
-                onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))} 
-                className="hover:text-white transition-colors"
+              <button
+                type="button"
+                onClick={() =>
+                  window.dispatchEvent(new Event("open-cookie-settings"))
+                }
+                className="transition-colors hover:text-white"
               >
                 Cookie Settings
               </button>
             </div>
-            
           </div>
         </div>
       </div>

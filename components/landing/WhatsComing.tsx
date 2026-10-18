@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Leaf,
   Drumstick,
@@ -36,81 +36,63 @@ const categories = [
 ];
 
 export function WhatsComing() {
-  return (
-    <section className="relative overflow-hidden border-t border-navy/5 bg-cream py-24 sm:py-32">
-      {/* Ambient glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/[0.06] blur-[140px]"
-      />
+  const reduce = useReducedMotion();
 
-      <div className="relative mx-auto max-w-[1320px] px-6 sm:px-10 lg:px-16">
+  const reveal = (delay = 0, y = 24) => ({
+    initial: reduce ? { opacity: 0 } : { opacity: 0, y },
+    whileInView: reduce ? { opacity: 1 } : { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.7, ease, delay },
+  });
+
+  return (
+    <section className="relative overflow-hidden bg-white py-16 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-cyan">
-            Launching December 2026
-          </p>
-<h2 className="font-display text-[2rem] font-bold leading-[1.1] tracking-[-0.035em] text-navy sm:text-[2.5rem] lg:text-[2.75rem]">
-            What we're bringing
-            <br />
-            <span className="text-cyan">to your kitchen.</span>
+        <motion.div {...reveal()} className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium text-navy/60">Launching December 2026</p>
+          <h2 className="mt-4 font-display text-[2rem] font-semibold leading-[1.12] tracking-[-0.03em] text-navy sm:text-[2.75rem] lg:text-[3.25rem]">
+            What we’re bringing to{" "}
+            your kitchen.
           </h2>
-          <p className="mx-auto mt-5 max-w-lg text-[15px] leading-relaxed text-navy/60">
-            Your local African, Caribbean and International wholesaler -
-            food, drinks, vegetables, meat, plus the usual grocery
-            essentials.
+          <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-navy/70 sm:text-lg sm:leading-8">
+            Your local African, Caribbean and international wholesaler: food,
+            drinks, vegetables, meat, plus the usual grocery essentials.
           </p>
         </motion.div>
 
         {/* Category cards */}
-        <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {categories.map((cat, i) => {
             const Icon = cat.icon;
             return (
               <motion.div
                 key={cat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, ease, delay: 0.1 + i * 0.08 }}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-navy/10 bg-white/70 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-navy/20 hover:bg-white hover:shadow-[0_24px_48px_-24px_rgba(11,43,92,0.2)]"
+                {...reveal(0.1 + i * 0.08, 20)}
+                className="group flex flex-col rounded-3xl bg-sage/70 p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-sage hover:shadow-xl hover:shadow-navy/10"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-ice text-cyan transition-colors duration-300 group-hover:bg-navy group-hover:text-cyan">
-                  <Icon className="h-5 w-5" strokeWidth={1.75} />
-                </div>
-                <div>
-                  <h3 className="font-display text-base font-bold tracking-[-0.01em] text-navy">
-                    {cat.label}
-                  </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-navy/55">
-                    {cat.body}
-                  </p>
-                </div>
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-navy shadow-sm shadow-navy/10 transition-colors duration-300 group-hover:bg-navy group-hover:text-cyan">
+                  <Icon className="h-6 w-6" strokeWidth={1.75} />
+                </span>
+                <h3 className="mt-6 font-display text-xl font-semibold leading-snug tracking-[-0.025em] text-navy">
+                  {cat.label}
+                </h3>
+                <p className="mt-2 text-base leading-7 text-navy/65">
+                  {cat.body}
+                </p>
               </motion.div>
             );
           })}
         </div>
 
-        {/* CTA to launch page */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease, delay: 0.4 }}
-          className="mt-14 flex justify-center"
-        >
+        {/* CTA */}
+        <motion.div {...reveal(0.3, 16)} className="mt-12 flex justify-center">
           <Link
             href="/launch"
-            className="group inline-flex items-center gap-3 rounded-full border border-navy/15 bg-white py-2 pl-6 pr-2 text-sm font-medium text-navy transition-all hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-lg hover:shadow-navy/10"
+            className="group inline-flex h-14 items-center gap-4 rounded-full border-2 border-navy/15 bg-white pl-7 pr-2 text-base font-semibold text-navy transition-all hover:-translate-y-0.5 hover:border-navy/30 hover:shadow-lg hover:shadow-navy/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2"
           >
             See the full launch plan
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-cyan transition-transform group-hover:translate-x-0.5">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-navy text-cyan transition-transform group-hover:translate-x-0.5">
               <ArrowRight className="h-4 w-4" />
             </span>
           </Link>

@@ -2,7 +2,7 @@
 
 import { createServerClient } from "@/lib/supabase/server";
 import { Resend } from "resend";
-import { getRegistrationEmailHtml } from "@/lib/emails/RegistrationEmail"; // <-- IMPORT
+import { getRegistrationEmailHtml } from "@/lib/emails/RegistrationEmail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -47,18 +47,18 @@ export async function submitRegistration(data: any) {
     // A. Confirmation email to the customer
     if (data.email) {
       await resend.emails.send({
-        from: "Manuella Foods <info@manuellafoods.co.uk>", // <-- Your verified email
+        from: "Manuella Foods <info@manuellafoods.co.uk>",
         to: data.email,
-        cc: ["kingsleybere@gmail.com"], // This copies them in
         subject: "You're on the Manuella Foods trade list",
-        html: getRegistrationEmailHtml(data.contactName, data.businessName), // <-- USING THE TEMPLATE
+        html: getRegistrationEmailHtml(data.contactName, data.businessName),
       });
     }
 
     // B. Notification email to YOU (Admin)
     await resend.emails.send({
-      from: "Manuella System <hello@manuellafoods.co.uk>",
-      to: "your-email@example.com", // <--- CHANGE THIS TO YOUR ACTUAL EMAIL
+      from: "Manuella System <info@manuellafoods.co.uk>",
+      to: "info@manuellafoods.co.uk", // <--- The main email that receives the form
+      cc: ["siriwebdv@gmail.com"], // <--- The CC you wanted for the form
       subject: `New Registration: ${data.businessName}`,
       html: `
         <div style="font-family: sans-serif; color: #333; max-width: 600px;">

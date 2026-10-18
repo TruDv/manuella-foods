@@ -3,16 +3,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 
 const ease = [0.16, 1, 0.3, 1] as const;
+
+const links = [
+  { href: "/#how", label: "How it works" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
+];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -21,120 +28,129 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when the mobile menu is open
+  // Lock body scroll and allow Escape to close while the mobile menu is open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!menuOpen) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [menuOpen]);
+
+  const item = {
+    open: { opacity: 1, y: 0 },
+    closed: reduce ? { opacity: 0 } : { opacity: 0, y: 12 },
+  };
 
   return (
     <>
       <header
         className={cn(
           "w-full transition-all duration-500",
-          scrolled ? "py-2" : "py-4"
+          scrolled ? "py-2" : "py-3 sm:py-4"
         )}
       >
         {/* Same max-width + padding as the hero so edges line up */}
-        <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12">
           <div
             className={cn(
-              // Increased the height slightly from h-16/h-[4.5rem] to h-[4.5rem]/h-20 to fit the bigger logo
-              "flex h-[4.5rem] items-center justify-between rounded-full px-3 pl-5 transition-all duration-500 sm:h-20",
+              "flex h-16 items-center justify-between rounded-full pl-5 pr-2 transition-all duration-500 sm:h-[4.5rem]",
               scrolled
-                ? "border border-navy/10 bg-white/70 shadow-sm backdrop-blur-xl"
+                ? "border border-navy/10 bg-white/80 shadow-sm shadow-navy/5 backdrop-blur-xl"
                 : "border border-transparent bg-transparent"
             )}
           >
             {/* Logo */}
-            <Link href="/" className="flex items-center">
+            <Link
+              href="/"
+              className="flex items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+            >
               <Image
                 src="/images/logo.png"
                 alt="Manuella"
-                width={220} // Increased intrinsic width
-                height={64} // Increased intrinsic height
+                width={220}
+                height={64}
                 priority
-                className="h-11 w-auto sm:h-12" // Increased rendered size
+                className="h-10 w-auto sm:h-12"
               />
             </Link>
 
-            {/* Center links — desktop */}
-            <nav className="hidden items-center gap-8 text-sm font-medium text-navy/70 md:flex">
-              <Link href="/#how" className="transition-colors hover:text-navy">
-                How it works
-              </Link>
-              <Link href="/#faq" className="transition-colors hover:text-navy">
-                FAQ
-              </Link>
-              <Link
-                href="/#contact"
-                className="transition-colors hover:text-navy"
-              >
-                Contact
-              </Link>
+            {/* Centre links, desktop */}
+            <nav
+              aria-label="Primary"
+              className="hidden items-center gap-9 text-[15px] font-medium text-navy/70 md:flex"
+            >
+              {links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="rounded transition-colors hover:text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                >
+                  {l.label}
+                </Link>
+              ))}
             </nav>
 
-            {/* Right side — desktop Register, mobile menu button */}
+            {/* Right: desktop Register, mobile menu button */}
             <div className="flex items-center gap-2">
               <Button
                 asChild
-                className="group hidden h-10 rounded-full bg-navy px-5 text-sm font-medium text-white transition-all hover:bg-navy-dark md:inline-flex"
+                className="group hidden h-11 rounded-full bg-navy px-6 text-[15px] font-semibold text-white transition-all hover:bg-navy-dark md:inline-flex"
               >
                 <Link href="/register">
                   Register
-                  <ArrowUpRight className="ml-0.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="ml-1 h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
               </Button>
 
-              {/* Mobile menu button */}
               <button
                 type="button"
                 onClick={() => setMenuOpen(true)}
                 aria-label="Open menu"
-                className="flex h-10 w-10 items-center justify-center rounded-full text-navy transition-colors hover:bg-navy/5 md:hidden"
+                aria-expanded={menuOpen}
+                className="flex h-12 w-12 items-center justify-center rounded-full text-navy transition-colors hover:bg-navy/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan md:hidden"
               >
-                <Menu className="h-5 w-5" />
+                <Menu className="h-6 w-6" />
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* ============================================================
-          Mobile menu — full screen overlay
-         ============================================================ */}
+      {/* Mobile menu: full-screen overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease }}
-            className="fixed inset-0 z-[100] bg-navy md:hidden"
+            className="fixed inset-0 z-[100] overflow-y-auto bg-navy md:hidden"
           >
             {/* Top bar */}
             <div className="flex h-20 items-center justify-between px-5 sm:px-8">
               <Image
                 src="/images/manuella-logo-white.png"
                 alt="Manuella"
-                width={220} // Increased intrinsic width
-                height={64} // Increased intrinsic height
-                className="h-11 w-auto sm:h-12" // Increased rendered size
+                width={220}
+                height={64}
+                className="h-10 w-auto sm:h-12"
               />
-
               <button
                 type="button"
                 onClick={() => setMenuOpen(false)}
                 aria-label="Close menu"
-                className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10"
+                className="flex h-12 w-12 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
               >
-                <X className="h-5 w-5" />
+                <X className="h-6 w-6" />
               </button>
             </div>
 
@@ -146,68 +162,56 @@ export function Nav() {
                 open: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
                 closed: {},
               }}
-              className="mt-12 flex flex-col gap-2 px-5 sm:px-8"
+              className="mt-8 flex flex-col px-5 pb-12 sm:px-8"
             >
-              {[
-                { href: "/#how", label: "How it works" },
-                { href: "/#faq", label: "FAQ" },
-                { href: "/#contact", label: "Contact" },
-              ].map((item) => (
+              {links.map((l) => (
                 <motion.div
-                  key={item.href}
-                  variants={{
-                    open: { opacity: 1, y: 0 },
-                    closed: { opacity: 0, y: 12 },
-                  }}
+                  key={l.href}
+                  variants={item}
                   transition={{ duration: 0.4, ease }}
                 >
                   <Link
-                    href={item.href}
+                    href={l.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block py-4 font-display text-3xl font-bold tracking-[-0.03em] text-white transition-colors hover:text-cyan"
+                    className="block py-4 font-display text-3xl font-semibold tracking-[-0.03em] text-white transition-colors hover:text-cyan"
                   >
-                    {item.label}
+                    {l.label}
                   </Link>
                 </motion.div>
               ))}
 
-              {/* Divider + Register */}
+              {/* Register */}
               <motion.div
-                variants={{
-                  open: { opacity: 1, y: 0 },
-                  closed: { opacity: 0, y: 12 },
-                }}
+                variants={item}
                 transition={{ duration: 0.4, ease }}
                 className="mt-8 border-t border-white/10 pt-8"
               >
                 <Link
                   href="/register"
                   onClick={() => setMenuOpen(false)}
-                  className="group inline-flex items-center gap-3 rounded-full bg-cyan py-2 pl-6 pr-2 text-sm font-semibold text-navy transition-all hover:bg-cyan-light"
+                  className="group flex h-14 w-full items-center justify-between rounded-full bg-cyan pl-7 pr-2 text-base font-semibold text-navy transition-all hover:bg-cyan-light"
                 >
                   Register your interest
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy text-cyan transition-transform group-hover:translate-x-0.5">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-navy text-cyan transition-transform group-hover:translate-x-0.5">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </Link>
               </motion.div>
 
-              {/* Footer info */}
+              {/* Contact info */}
               <motion.div
-                variants={{
-                  open: { opacity: 1, y: 0 },
-                  closed: { opacity: 0, y: 12 },
-                }}
+                variants={item}
                 transition={{ duration: 0.4, ease }}
-                className="mt-16 space-y-2 text-sm text-white/50"
+                className="mt-12 space-y-2 text-base text-white/60"
               >
                 <p>Watford-based</p>
                 <p>N &amp; W London · M1/M25</p>
                 <a
                   href="tel:01923602706"
-                  className="mt-4 inline-block text-white/70 transition-colors hover:text-white"
+                  className="mt-4 inline-flex min-h-12 items-center gap-2 text-white/80 transition-colors hover:text-white"
                 >
-                  📞 01923 602706
+                  <Phone className="h-4 w-4 text-cyan" />
+                  01923 602706
                 </a>
               </motion.div>
             </motion.nav>
