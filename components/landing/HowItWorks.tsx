@@ -83,7 +83,7 @@ export function HowItWorks() {
           })}
         </ol>
 
-        {/* CTA */}
+        {/* CTA 
         <motion.div {...reveal(0.3, 16)} className="mt-14 flex justify-center">
           <Link
             href="/register"
@@ -94,7 +94,7 @@ export function HowItWorks() {
               <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

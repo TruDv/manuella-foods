@@ -73,10 +73,10 @@ export function Nav() {
               <Image
                 src="/images/logo.png"
                 alt="Manuella"
-                width={220}
-                height={64}
+                width={400}
+                height={100}
                 priority
-                className="h-10 w-auto sm:h-12"
+                className="h-14 w-auto sm:h-16"
               />
             </Link>
 
