@@ -11,7 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   MapPin,
-  Snowflake,
+  Package,
   Truck,
   Pause,
   Play,
@@ -41,37 +41,32 @@ const SLIDES = [
     body: "Wholesale staples ordered online and delivered direct to your kitchen door.",
   },
   {
-    id: "meat",
-    tab: "Meat & seafood",
-    image: "/images/hero-meat1.jpg",
-    headline: "Never run out of meat and seafood.",
-    body: "Fresh, frozen or marinated, plus a wide range of herbs and spices to season it right.",
-  },
-  {
-    id: "bakery",
-    tab: "Bakery & snacks",
-    image: "/images/hero-bakery.jpg",
-    headline: "Never run out of familiar bakes.",
-    body: "Fresh breads, cakes and the snacks and soft drinks your customers ask for by name.",
+    id: "essentials",
+    tab: "Kitchen essentials",
+    // Same photo for now. Swap in a second staples image when you have one.
+    image: "/images/hero5.png",
+    headline: "Never run out of the flavours your customers love.",
+    body: "From yam and plantain to palm oil, spices and fufu flour, everything your kitchen reorders, in one place.",
   },
 ] as const;
 
 const MARQUEE = [
   "Plantain",
   "Yam",
+  "Cassava",
   "Scotch bonnet",
-  "Goat meat",
-  "Stockfish",
   "Palm oil",
   "Egusi",
-  "Hard dough bread",
-  "Jerk seasoning",
+  "Garri",
   "Fufu flour",
+  "Stockfish",
+  "Salt fish",
   "Ackee",
-  "Malt drinks",
-  "Canned goods",
-  "Dairy",
-  "Home & personal care",
+  "Black-eyed beans",
+  "Okra",
+  "Eddoes",
+  "Jerk seasoning",
+  "Rice",
 ];
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -176,10 +171,10 @@ export function Hero() {
         className="absolute left-6 top-1/2 hidden -translate-y-1/2 xl:block"
       >
         <div className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white backdrop-blur-md">
-          <Snowflake className="h-5 w-5 text-cyan" />
+          <Package className="h-5 w-5 text-cyan" />
           <div className="text-sm leading-tight">
-            <p className="font-semibold">Fresh, frozen &amp; marinated</p>
-            <p className="text-white/60">Cold-chain delivery</p>
+            <p className="font-semibold">African &amp; Caribbean staples</p>
+            <p className="text-white/60">Wholesale, ordered online</p>
           </div>
         </div>
       </motion.div>
@@ -283,9 +278,6 @@ export function Hero() {
               aria-hidden="true"
               className="mx-auto mt-4 h-1 w-24 rounded-full bg-cyan"
             />
-            <p className="mt-3 text-sm text-white/70">
-              Exact date coming soon. Sign up and you will hear first.
-            </p>
           </div>
         </motion.div>
 
@@ -299,10 +291,10 @@ export function Hero() {
           <Button
             asChild
             size="lg"
-            className="group h-14 w-full rounded-full bg-cyan pl-7 pr-2 text-base font-semibold text-navy shadow-lg shadow-cyan/30 transition-all hover:-translate-y-0.5 hover:bg-white sm:w-auto"
+            className="group h-14 w-full rounded-full bg-cyan pl-7 pr-2 text-base font-semibold text-white shadow-lg shadow-cyan/30 transition-all hover:-translate-y-0.5 hover:bg-navy sm:w-auto"
           >
             <Link href="/register">
-              Get early access
+              Register your interest
               <span className="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy text-white transition-transform group-hover:translate-x-0.5">
                 <ArrowRight className="h-4 w-4" />
               </span>
@@ -338,7 +330,7 @@ export function Hero() {
             <ChevronLeft className="h-5 w-5" />
           </button>
 
-          <div role="tablist" aria-label="Choose a slide" className="grid flex-1 grid-cols-3 gap-2 sm:gap-3">
+          <div role="tablist" aria-label="Choose a slide" className="grid flex-1 grid-cols-2 gap-2 sm:gap-3">
             {SLIDES.map((s, i) => {
               const active = i === index;
               return (
