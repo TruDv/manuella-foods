@@ -228,7 +228,7 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
           </span>
-          Coming soon to Watford, Herts
+          Coming soon to your doorstep
         </motion.p>
 
         {/* Rotating headline + body */}
@@ -247,7 +247,7 @@ export function Hero() {
               <h1 className="mx-auto max-w-[17ch] font-display text-[2.4rem] font-extrabold leading-[1.04] tracking-[-0.04em] text-white sm:max-w-[22ch] sm:text-[3.25rem] lg:text-[3.75rem]">
                 {slide.headline}
               </h1>
-              <p className="mx-auto mt-4 max-w-[34rem] text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
+              <p className="mx-auto mt-4 max-w-[34rem] text-base font-medium leading-7 text-white [text-shadow:0_1px_14px_rgba(0,0,0,0.6)] sm:text-lg sm:leading-8">
                 {slide.body}
               </p>
             </motion.div>
