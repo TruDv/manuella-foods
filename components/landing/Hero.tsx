@@ -36,7 +36,7 @@ const SLIDES = [
   {
     id: "staples",
     tab: "Staples",
-    image: "/images/vegetables.jpg",
+    image: "/images/hero10.jpg",
     headline: "Never run out of African & Caribbean staples.",
     body: "Wholesale staples ordered online and delivered direct to your kitchen door.",
   },
@@ -44,7 +44,7 @@ const SLIDES = [
     id: "essentials",
     tab: "Kitchen essentials",
     // Same photo for now. Swap in a second staples image when you have one.
-    image: "/images/hero5.png",
+    image: "/images/fufu.jpg",
     headline: "Never run out of the flavours your customers love.",
     body: "From yam and plantain to palm oil, spices and fufu flour, everything your kitchen reorders, in one place.",
   },
@@ -197,39 +197,7 @@ export function Hero() {
 
       {/* ---------- CONTENT ---------- */}
       <div className="mx-auto flex w-full max-w-[920px] flex-1 flex-col items-center px-5 pb-6 pt-10 text-center sm:px-8 sm:pt-14">
-        {/* Centred logo */}
-        <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: -10 }}
-          animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9, ease, delay: 0.1 }}
-          className="relative h-24 w-64 sm:h-32 sm:w-80 lg:h-36 lg:w-[22rem]"
-        >
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 rounded-full bg-cyan/25 blur-3xl"
-          />
-          <Image
-            src={LOGO}
-            alt="Manuella Foods"
-            fill
-            priority
-            sizes="(max-width: 640px) 256px, 352px"
-            className="object-contain drop-shadow-[0_6px_24px_rgba(0,0,0,0.45)]"
-          />
-        </motion.div>
-
-        <motion.p
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 10 }}
-          animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease, delay: 0.25 }}
-          className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-md"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
-          </span>
-          Coming soon to your doorstep
-        </motion.p>
+       
 
         {/* Rotating headline + body */}
         <div
