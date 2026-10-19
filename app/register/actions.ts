@@ -57,8 +57,8 @@ export async function submitRegistration(data: any) {
     // B. Notification email to YOU (Admin)
     await resend.emails.send({
       from: "Manuella System <info@manuellafoods.co.uk>",
-      to: "info@manuellafoods.co.uk", // <--- The main email that receives the form
-      cc: ["siriwebdv@gmail.com"], // <--- The CC you wanted for the form
+      to: "register@manuellafoods.co.uk", // <--- The main email that receives the form
+      cc: ["info@manuellafoods.co.uk"], // <--- The CC you wanted for the form
       subject: `New Registration: ${data.businessName}`,
       html: `
         <div style="font-family: sans-serif; color: #333; max-width: 600px;">
